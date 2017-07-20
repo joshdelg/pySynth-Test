@@ -1,6 +1,6 @@
 Most of the current test files only use the default synthesizer. Creatively titled PySynth “A” by the documentation. 
 However, this is not the only synth there is. 
-The documentation, found here: https://mdoege.github.io/PySynth has a list of the synthesizers as well as demo audio clips for all of them.
+The documentation, here: https://mdoege.github.io/PySynth has a list of the synthesizers as well as demo audio clips for all of them.
 I encourage you to check them out. However, most of the other synthesizers require another library called NumPy. 
 It may not be neccessary now, but in order to add an additional sound or two,
 such as (electric piano, or plucked strings, as described one again by the author), we would need it. 
