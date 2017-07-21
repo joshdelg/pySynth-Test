@@ -17,4 +17,3 @@ This was demonstrated when I installed NumPy and attempted to run the now enable
 I got one error. After digging around I found that is was caused by one line of code that input a float where an int was needed.
 Once I cast the value to an int, everything was fine. However, I then realized that I would have to do this for every synthesizer.
 And that it could be a very large annoyance. But, it does work.
-Also, I found out that pySynth does in fact have a method for mixing files, so it will be possible to produce chords.
