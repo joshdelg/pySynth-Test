@@ -7,7 +7,7 @@ import pysynth_p as p
 import pysynth_s as s
 
 # user selects key
-# length determines duration (capped at 100 (doesn't half to be that))
+# length determines duration
 # color determines pitch
 
 notes = []
@@ -15,20 +15,21 @@ lines = []
 
 current_synth = a
 current_color = 'red'
-current_key = sig_c
 
 accidentals = ['f', 'c', 'g', 'd', 'a', 'e', 'b']
 
 sig_c, sig_g, sig_d, sig_a, sig_e, sig_b, sig_fsharp = 0, 1, 2, 3, 4, 5, 6
 sig_f, sig_bflat, sig_eflat, sig_aflat, sig_dflat, sig_gflat, sig_cflat = -1, -2, -3, -4, -5, -6, -7
 
+current_key = sig_c
+
 pitches = {
-	'red' : 'a'
-	'blue' : 'b'
-	'white' : 'c'
-	'yellow' : 'd'
-	'green' : 'e'
-	'purple' : 'f'
+	'red' : 'a',
+	'blue' : 'b',
+	'white' : 'c',
+	'yellow' : 'd',
+	'green' : 'e',
+	'purple' : 'f',
 	'aqua' : 'g'
 }
 
@@ -37,12 +38,15 @@ def add_line(length, pitch):
 	lines.append(temp_line)
 
 def change_synth(new_synth):
+	global current_synth
 	current_synth = new_synth
 
 def change_color(new_color):
+	global current_color
 	current_color = new_color
 
 def change_key(new_key):
+	global current_key
 	current_key = new_key
 
 def color_to_pitch(color):
@@ -63,7 +67,9 @@ def make_song(lines, key, file_name, synth):
 
 	for line in lines:
 		length, pitch = line
-		if pitch in accidentals_for_key:
+		if accs == None:
+			pass
+		elif pitch in accs:
 			if key >= 0:
 				pitch += '#'
 			elif key < 0:
@@ -71,11 +77,11 @@ def make_song(lines, key, file_name, synth):
 
 		if length < 20:
 			note_duration = 16
-		elif length < 40 and >= 20:
+		elif length < 40 and length >= 20:
 			note_duration = 8
-		elif length < 60 and >= 40:
+		elif length < 60 and length >= 40:
 			note_duration = 4
-		elif length < 80 and >= 60:
+		elif length < 80 and length >= 60:
 			note_duration = 2
 		elif length >= 80:
 			note_duration = 1
@@ -84,5 +90,48 @@ def make_song(lines, key, file_name, synth):
 		notes.append(note)
 
 	synth.make_wav(notes, fn = file_name)
-  
-  # TODO: Add unit tests
+
+print("Testing add line")
+print(lines)
+print("Adding len 5 pitch a each '()' is a line")
+add_line(5, 'a')
+print(lines)
+
+print("Testing change synth")
+print(current_synth)
+print ("Changing synth to s")
+change_synth(s)
+print(current_synth)
+
+print("Testing change color")
+print(current_color)
+print("Changing color to blue")
+change_color('blue')
+print(current_color)
+
+print("Testing change key")
+print(current_key)
+print("Changing key to F (-1)")
+change_key(sig_f)
+print(current_key)
+
+print("Testing color to pitch")
+print(current_color)
+print("Pitch should be b")
+print(color_to_pitch(current_color))
+
+print("Testing accidentals for key")
+print(current_key)
+print("accidentals should be B")
+print(accidentals_for_key(current_key))
+
+print("Testing make song")
+print("adding lines to make a C chord")
+lines = []
+add_line(50, 'c')
+add_line(50, 'e')
+add_line(50, 'g')
+add_line(100, 'c5')
+print("Making song with current lines, key of C, file name of test.wav, and synth S")
+change_key(sig_c)
+make_song(lines, current_key, "test.wav", s)
