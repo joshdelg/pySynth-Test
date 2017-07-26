@@ -1,7 +1,7 @@
 import pysynth
 
 # Ex. > e 4 d 4 c 4 d 4 e 4 e 4 e 2
-notes = raw_input('Enter notes: ').split()
+notes = input('Enter notes: ').split()
 
 song = []
 
@@ -15,4 +15,4 @@ while i < len(notes) - 1:
   
 	i += 2
 
-pysynth.make_wav(song, fn = 'raw_input.wav')
+pysynth.make_wav(song, fn = 'input.wav')
