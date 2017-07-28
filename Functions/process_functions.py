@@ -135,3 +135,21 @@ add_line(100, 'c5')
 print("Making song with current lines, key of C, file name of test.wav, and synth S")
 change_key(sig_c)
 make_song(lines, current_key, "test.wav", s)
+
+
+#EXAMPLES:
+
+# line is length 50 and color yellow (yellow is the pitch D)
+line = [50, 'yellow']
+#line[0] passes in length, color_to_pitch converts line[1] (the color) of the line to the respective pitch,
+#then passes it into the function.
+add_line(line[0], color_to_pitch(line[1]))
+
+#user wants synth to be synth_s
+user_synth = s
+change_synth(user_synth)
+
+#change_key and change_color work exactly the same way
+#accidentals_for_key is only used by this program in the make_wav function
+#for input of make_song, see tests above
+#make_song should be called when the user presses the play button. Once the file loads, it should play the created music file
